@@ -28,6 +28,7 @@
             padding: 12px 15px;
             text-align: right;
             border-bottom: 1px solid #e5e7eb;
+            white-space: nowrap;
         }
         thead th {
             background-color: #f8f9fa;
@@ -64,67 +65,138 @@
 
         <div class="bg-white rounded-xl shadow-lg p-6">
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                <div class="relative w-full md:w-1/3">
-                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="ابحث بالاسم أو نوع الخدمة..." class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                     <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                <div class="flex items-center gap-4">
+                    <h2 class="text-md font-semibold text-gray-700">اختر الفترة:</h2>
+                    <div class="flex gap-2">
+                        <select id="month-selector" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </select>
+                        <select id="year-selector" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </select>
+                    </div>
                 </div>
-                 <a href="https://ieatd-academy2.github.io/report/" class="bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+                 <a href="index.html" class="bg-blue-600 text-white font-semibold px-4 py-2.5 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
                      <i data-lucide="arrow-left" class="w-5 h-5"></i>
                     <span>العودة للتقرير</span>
                 </a>
             </div>
-
-            <div class="table-container">
-                <table id="clientsTable">
-                    <thead>
-                        <tr>
-                            <th>الاسم</th>
-                            <th>نوع الخدمة</th>
-                            <th>الدفع</th>
-                            <th>المبلغ المدفوع</th>
-                            <th>جهة الاعتماد</th>
-                            <th>الدرجة المطلوبة</th>
-                            <th>الحملة</th>
-                            <th>المنصة</th>
-                            <th>المصدر</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        </tbody>
-                </table>
+            
+            <div class="relative w-full md:w-1/3 mb-4">
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="ابحث بالاسم أو نوع الخدمة..." class="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                 <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
             </div>
+
+            <div id="table-wrapper">
+                <div class="table-container">
+                    <table id="clientsTable">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الاسم</th>
+                                <th>نوع الخدمة</th>
+                                <th>الدفع</th>
+                                <th>المبلغ المدفوع</th>
+                                <th>جهة الاعتماد</th>
+                                <th>الدرجة المطلوبة</th>
+                                <th>الحملة</th>
+                                <th>المنصة</th>
+                                <th>المصدر</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="no-data-placeholder" class="text-center text-gray-500 p-8 text-xl font-semibold hidden">
+                <i data-lucide="info" class="w-16 h-16 mx-auto mb-4 text-blue-400"></i>
+                <p>البيانات غير متاحة حاليًا لهذا الشهر.</p>
+            </div>
+
         </div>
     </div>
     
     <script>
-        const clientsData = [
-            { name: "أحمد محمد", service: "ماجستير إدارة أعمال", payment: "قسط", paid: 5000, accreditation: "جامعة القاهرة", degree: "ماجستير", campaign: "MBA_Q3", platform: "Facebook", source: "Ads" },
-            { name: "فاطمة علي", service: "دبلومة موارد بشرية", payment: "كاش", paid: 8000, accreditation: "الجامعة الأمريكية", degree: "دبلومة", campaign: "HR_Promo", platform: "LinkedIn", source: "Organic" },
-            { name: "خالد يوسف", service: "ماجستير هندسة", payment: "قسط", paid: 7500, accreditation: "جامعة عين شمس", degree: "ماجستير", campaign: "Eng_Masters", platform: "Google", source: "Ads" },
-            { name: "سارة إبراهيم", service: "دبلومة تسويق رقمي", payment: "كاش", paid: 12000, accreditation: "أكاديمية السادات", degree: "دبلومة", campaign: "Digital_Mkt", platform: "Facebook", source: "Ads" },
-            { name: "عمر حسن", service: "دكتوراه في القانون", payment: "قسط", paid: 15000, accreditation: "جامعة القاهرة", degree: "دكتوراه", campaign: "Law_PhD", platform: "Organic Search", source: "Organic" },
-            { name: "منى السيد", service: "ماجستير إدارة أعمال", payment: "كاش", paid: 30000, accreditation: "الجامعة الأمريكية", degree: "ماجستير", campaign: "MBA_Q3", platform: "Instagram", source: "Ads" }
-        ];
+        const clientsData = {
+            "2025": {
+                "8": [ // August Data
+                    { date: "2025-08-01", name: "أحمد محمد", service: "ماجستير إدارة أعمال", payment: "قسط", paid: 5000, accreditation: "جامعة القاهرة", degree: "ماجستير", campaign: "MBA_Q3", platform: "Facebook", source: "Ads" },
+                    { date: "2025-08-03", name: "فاطمة علي", service: "دبلومة موارد بشرية", payment: "كاش", paid: 8000, accreditation: "الجامعة الأمريكية", degree: "دبلومة", campaign: "HR_Promo", platform: "LinkedIn", source: "Organic" },
+                    { date: "2025-08-05", name: "خالد يوسف", service: "ماجستير هندسة", payment: "قسط", paid: 7500, accreditation: "جامعة عين شمس", degree: "ماجستير", campaign: "Eng_Masters", platform: "Google", source: "Ads" },
+                    { date: "2025-08-10", name: "سارة إبراهيم", service: "دبلومة تسويق رقمي", payment: "كاش", paid: 12000, accreditation: "أكاديمية السادات", degree: "دبلومة", campaign: "Digital_Mkt", platform: "Facebook", source: "Ads" },
+                    { date: "2025-08-12", name: "عمر حسن", service: "دكتوراه في القانون", payment: "قسط", paid: 15000, accreditation: "جامعة القاهرة", degree: "دكتوراه", campaign: "Law_PhD", platform: "Organic Search", source: "Organic" },
+                    { date: "2025-08-20", name: "منى السيد", service: "ماجستير إدارة أعمال", payment: "كاش", paid: 30000, accreditation: "الجامعة الأمريكية", degree: "ماجستير", campaign: "MBA_Q3", platform: "Instagram", source: "Ads" }
+                ]
+                // Other months are empty
+            }
+        };
 
-        function populateTable() {
+        const monthSelector = document.getElementById('month-selector');
+        const yearSelector = document.getElementById('year-selector');
+        const tableWrapper = document.getElementById('table-wrapper');
+        const noDataPlaceholder = document.getElementById('no-data-placeholder');
+
+        function populateSelectors() {
+            const months = [
+                { value: 1, name: "يناير" }, { value: 2, name: "فبراير" }, { value: 3, name: "مارس" },
+                { value: 4, name: "أبريل" }, { value: 5, name: "مايو" }, { value: 6, name: "يونيو" },
+                { value: 7, name: "يوليو" }, { value: 8, name: "أغسطس" }, { value: 9, name: "سبتمبر" },
+                { value: 10, name: "أكتوبر" }, { value: 11, name: "نوفمبر" }, { value: 12, name: "ديسمبر" }
+            ];
+            
+            months.forEach(month => {
+                const option = document.createElement('option');
+                option.value = month.value;
+                option.textContent = month.name;
+                monthSelector.appendChild(option);
+            });
+
+            const startYear = 2025;
+            for (let i = startYear; i <= startYear + 5; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                yearSelector.appendChild(option);
+            }
+            // Set default to a month with no data initially
+            monthSelector.value = 7;
+            yearSelector.value = 2025;
+        }
+
+        function populateTable(data) {
             const tableBody = document.querySelector("#clientsTable tbody");
             tableBody.innerHTML = ""; // Clear existing data
-            clientsData.forEach(client => {
-                const row = `
-                    <tr>
-                        <td class="font-semibold text-gray-800">${client.name}</td>
-                        <td>${client.service}</td>
-                        <td><span class="status-badge ${client.payment === 'كاش' ? 'status-cash' : 'status-installment'}">${client.payment}</span></td>
-                        <td class="text-green-600 font-semibold">${client.paid.toLocaleString()} جنيه</td>
-                        <td>${client.accreditation}</td>
-                        <td>${client.degree}</td>
-                        <td>${client.campaign}</td>
-                        <td>${client.platform}</td>
-                        <td><span class="status-badge ${client.source === 'Ads' ? 'status-ads' : 'status-organic'}">${client.source}</span></td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
+            if (data && data.length > 0) {
+                tableWrapper.classList.remove('hidden');
+                noDataPlaceholder.classList.add('hidden');
+                data.forEach(client => {
+                    const row = `
+                        <tr>
+                            <td>${client.date}</td>
+                            <td class="font-semibold text-gray-800">${client.name}</td>
+                            <td>${client.service}</td>
+                            <td><span class="status-badge ${client.payment === 'كاش' ? 'status-cash' : 'status-installment'}">${client.payment}</span></td>
+                            <td class="text-green-600 font-semibold">${client.paid.toLocaleString()} جنيه</td>
+                            <td>${client.accreditation}</td>
+                            <td>${client.degree}</td>
+                            <td>${client.campaign}</td>
+                            <td>${client.platform}</td>
+                            <td><span class="status-badge ${client.source === 'Ads' ? 'status-ads' : 'status-organic'}">${client.source}</span></td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            } else {
+                tableWrapper.classList.add('hidden');
+                noDataPlaceholder.classList.remove('hidden');
+            }
+        }
+
+        function renderData() {
+            const year = yearSelector.value;
+            const month = monthSelector.value;
+            const dataForMonth = (clientsData[year] && clientsData[year][month]) ? clientsData[year][month] : [];
+            populateTable(dataForMonth);
         }
 
         function filterTable() {
@@ -134,8 +206,8 @@
             const tr = table.getElementsByTagName("tr");
 
             for (let i = 1; i < tr.length; i++) { // Start from 1 to skip header
-                const tdName = tr[i].getElementsByTagName("td")[0];
-                const tdService = tr[i].getElementsByTagName("td")[1];
+                const tdName = tr[i].getElementsByTagName("td")[1]; // Name is now the 2nd column
+                const tdService = tr[i].getElementsByTagName("td")[2]; // Service is the 3rd
                 if (tdName || tdService) {
                     const txtValueName = tdName.textContent || tdName.innerText;
                     const txtValueService = tdService.textContent || tdService.innerText;
@@ -148,9 +220,12 @@
             }
         }
 
+        monthSelector.addEventListener('change', renderData);
+        yearSelector.addEventListener('change', renderData);
 
         document.addEventListener('DOMContentLoaded', () => {
-            populateTable();
+            populateSelectors();
+            renderData(); // Initial render
             lucide.createIcons();
         });
     </script>
