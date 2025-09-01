@@ -92,6 +92,8 @@
                             <tr>
                                 <th>التاريخ</th>
                                 <th>الاسم</th>
+                                <th>رقم الهاتف</th>
+                                <th>الايميل</th>
                                 <th>نوع الخدمة</th>
                                 <th>الدفع</th>
                                 <th>المبلغ المدفوع</th>
@@ -120,10 +122,10 @@
         const clientsData = {
             "2025": {
                 "8": [ // August Data Updated
-                    { date: "2025-08-31", name: "بتول علي", service: "دبلوم الصحة والسلامة المهنية", payment: "قسط", paid: 300, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
-                    { date: "2025-08-16", name: "عواطف معلا المحمادي", service: "دبلوم صعوبات التعلم", payment: "قسط", paid: 150, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
-                    { date: "2025-08-22", name: "الاء علي باشا", service: "دبلوم الصحة النفسية", payment: "قسط", paid: 600, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
-                    { date: "2025-08-28", name: "طيف جيلان", service: "دبلوم تربية خاصة", payment: "كاش", paid: 600, accreditation: "السعودية", degree: "دبلوم عالي", campaign: "Diploma_Aug", platform: "Direct", source: "ads" }
+                    { date: "2025-08-31", name: "بتول علي", phone: "+966558561974", email: "batoolalialawami@outlook.com", service: "دبلوم الصحة والسلامة المهنية", payment: "قسط", paid: 300, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-08-16", name: "عواطف معلا المحمادي", phone: "+966503362656", email: "watf34158@gmail.com", service: "دبلوم صعوبات التعلم", payment: "قسط", paid: 150, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-08-22", name: "الاء علي باشا", phone: "+966598279833", email: "talataleen1@gmail.com", service: "دبلوم الصحة النفسية", payment: "قسط", paid: 600, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-08-28", name: "طيف جيلان", phone: "+966507082309", email: "t.aloos@icloud.com", service: "دبلوم تربية خاصة", payment: "كاش", paid: 600, accreditation: "السعودية", degree: "دبلوم عالي", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" }
                 ]
                 // Other months are empty
             }
@@ -172,6 +174,8 @@
                         <tr>
                             <td>${client.date}</td>
                             <td class="font-semibold text-gray-800">${client.name}</td>
+                            <td>${client.phone}</td>
+                            <td>${client.email}</td>
                             <td>${client.service}</td>
                             <td><span class="status-badge ${client.payment === 'كاش' ? 'status-cash' : 'status-installment'}">${client.payment}</span></td>
                             <td class="text-green-600 font-semibold">${client.paid.toLocaleString()} ريال</td>
@@ -204,8 +208,8 @@
             const tr = table.getElementsByTagName("tr");
 
             for (let i = 1; i < tr.length; i++) { // Start from 1 to skip header
-                const tdName = tr[i].getElementsByTagName("td")[1]; // Name is now the 2nd column
-                const tdService = tr[i].getElementsByTagName("td")[2]; // Service is the 3rd
+                const tdName = tr[i].getElementsByTagName("td")[1]; // Name is the 2nd column
+                const tdService = tr[i].getElementsByTagName("td")[4]; // Service is the 5th column now
                 if (tdName || tdService) {
                     const txtValueName = tdName.textContent || tdName.innerText;
                     const txtValueService = tdService.textContent || tdService.innerText;
