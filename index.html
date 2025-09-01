@@ -119,13 +119,11 @@
     <script>
         const clientsData = {
             "2025": {
-                "8": [ // August Data
-                    { date: "2025-08-01", name: "أحمد محمد", service: "ماجستير إدارة أعمال", payment: "قسط", paid: 5000, accreditation: "جامعة القاهرة", degree: "ماجستير", campaign: "MBA_Q3", platform: "Facebook", source: "Ads" },
-                    { date: "2025-08-03", name: "فاطمة علي", service: "دبلومة موارد بشرية", payment: "كاش", paid: 8000, accreditation: "الجامعة الأمريكية", degree: "دبلومة", campaign: "HR_Promo", platform: "LinkedIn", source: "Organic" },
-                    { date: "2025-08-05", name: "خالد يوسف", service: "ماجستير هندسة", payment: "قسط", paid: 7500, accreditation: "جامعة عين شمس", degree: "ماجستير", campaign: "Eng_Masters", platform: "Google", source: "Ads" },
-                    { date: "2025-08-10", name: "سارة إبراهيم", service: "دبلومة تسويق رقمي", payment: "كاش", paid: 12000, accreditation: "أكاديمية السادات", degree: "دبلومة", campaign: "Digital_Mkt", platform: "Facebook", source: "Ads" },
-                    { date: "2025-08-12", name: "عمر حسن", service: "دكتوراه في القانون", payment: "قسط", paid: 15000, accreditation: "جامعة القاهرة", degree: "دكتوراه", campaign: "Law_PhD", platform: "Organic Search", source: "Organic" },
-                    { date: "2025-08-20", name: "منى السيد", service: "ماجستير إدارة أعمال", payment: "كاش", paid: 30000, accreditation: "الجامعة الأمريكية", degree: "ماجستير", campaign: "MBA_Q3", platform: "Instagram", source: "Ads" }
+                "8": [ // August Data Updated
+                    { date: "2025-08-31", name: "بتول علي", service: "دبلوم الصحة والسلامة المهنية", payment: "قسط", paid: 300, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
+                    { date: "2025-08-16", name: "عواطف معلا المحمادي", service: "دبلوم صعوبات التعلم", payment: "قسط", paid: 150, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
+                    { date: "2025-08-22", name: "الاء علي باشا", service: "دبلوم الصحة النفسية", payment: "قسط", paid: 600, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "Direct", source: "ads" },
+                    { date: "2025-08-28", name: "طيف جيلان", service: "دبلوم تربية خاصة", payment: "كاش", paid: 600, accreditation: "السعودية", degree: "دبلوم عالي", campaign: "Diploma_Aug", platform: "Direct", source: "ads" }
                 ]
                 // Other months are empty
             }
@@ -176,7 +174,7 @@
                             <td class="font-semibold text-gray-800">${client.name}</td>
                             <td>${client.service}</td>
                             <td><span class="status-badge ${client.payment === 'كاش' ? 'status-cash' : 'status-installment'}">${client.payment}</span></td>
-                            <td class="text-green-600 font-semibold">${client.paid.toLocaleString()} جنيه</td>
+                            <td class="text-green-600 font-semibold">${client.paid.toLocaleString()} ريال</td>
                             <td>${client.accreditation}</td>
                             <td>${client.degree}</td>
                             <td>${client.campaign}</td>
