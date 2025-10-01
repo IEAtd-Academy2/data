@@ -121,13 +121,23 @@
     <script>
         const clientsData = {
             "2025": {
-                "8": [ // August Data Updated
+                "8": [ // August Data
                     { date: "2025-08-31", name: "بتول علي", phone: "+966558561974", email: "batoolalialawami@outlook.com", service: "دبلوم الصحة والسلامة المهنية", payment: "قسط", paid: 300, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
                     { date: "2025-08-16", name: "عواطف معلا المحمادي", phone: "+966503362656", email: "watf34158@gmail.com", service: "دبلوم صعوبات التعلم", payment: "قسط", paid: 150, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
                     { date: "2025-08-22", name: "الاء علي باشا", phone: "+966598279833", email: "talataleen1@gmail.com", service: "دبلوم الصحة النفسية", payment: "قسط", paid: 600, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" },
                     { date: "2025-08-28", name: "طيف جيلان", phone: "+966507082309", email: "t.aloos@icloud.com", service: "دبلوم تربية خاصة", payment: "كاش", paid: 600, accreditation: "السعودية", degree: "دبلوم عالي", campaign: "Diploma_Aug", platform: "انستقرام", source: "Ads" }
+                ],
+                "9": [ // September Data Added from Image
+                    { date: "2025-09-02", name: "ساميه احمد محمد", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 200, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-05", name: "الاء ثامر علي", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 600, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-08", name: "سلمان الخضراوي", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 200, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-11", name: "خالد حسن عمرو", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 100, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-14", name: "الاء ابراهيم محمد", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 200, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-17", name: "بتول علي العوامي", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 200, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-20", name: "ساميه احمد محمد", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 400, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-23", name: "مريم عوض محمد", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 200, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" },
+                    { date: "2025-09-26", name: "غاده مانع بمانع", phone: "غير متوفر", email: "غير متوفر", service: "دبلوم متنوع", payment: "قسط", paid: 875, accreditation: "السعودية", degree: "دبلوم", campaign: "Diploma_Sep", platform: "انستقرام", source: "Ads" }
                 ]
-                // Other months are empty
             }
         };
 
@@ -158,8 +168,8 @@
                 option.textContent = i;
                 yearSelector.appendChild(option);
             }
-            // Set default to a month with no data initially
-            monthSelector.value = 7;
+            // Set default to September to show the new data
+            monthSelector.value = 9;
             yearSelector.value = 2025;
         }
 
